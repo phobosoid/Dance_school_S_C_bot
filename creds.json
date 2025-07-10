@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "danceschoolsc",
+  "private_key_id": "f605f81225c6eb18b87f4fa6d4316526b70426e4",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCFQvmXN7TI+xmQ\ndJnuzkBj5QZP0bXTH4kXLNx+SlQGrho+cnpyibhzUcw6Nl228nDUNFTQfLC5Ukb5\n+dfd5HrIolBKbRiHZY9lqP2wHdRWHHJxPKlA58iLqJz3j2pQUWWsKxCBCLMYgEH0\ndTCm59lS5y1gwHx/In4+9eVV0gY2ihVpB55qwEIQHGQnuhIUswV7C6xpfRj78KmF\nvUZvCPejj/73KIxNlyHUTAFfD9M2Qrtbo5jTV55N4FvljFzVqbJGlIjf6wnh+0Gz\nzlpn9EU8heGSItBRPn1yXn+8sbXKnTwyzLVuLnRYpfaP98T4y9E8byQ8VNXKlAey\nNBUjD3NLAgMBAAECggEAEU0PM2s3jOpQuNjyjTb41B9NUPqUhRrwhPI9lCXZP97F\nqHrbW9h2en5RqfMZ+qECNgKvSjwOA5ljfpvJw1Sg/kBYdTkxuI5ebh/hA8bzpNRf\npUTvYm5VMpCLBHb5ogDXVuFmbKIxAkrQhUjbrqemJuW9lfSXlTfotQreoeQ5C0Z1\nJ0qUGcVG/jiB/5ERIHkwCcG+RLtvJzXtWHGYg5MMmGlL6lvWpoFj3wtr8M/nl5uC\n3/4o179AkWkoWL+NApqX4bFmoCCfkjvy9Ls3bFZ2+aSJf7rXCM9zKEKHXpm9JyGh\n1qmQnBi+9yhSy46qwuNWDXe+x50bnDpvHeEltwv47QKBgQC7SwgFYzr87ojCQ+Zk\nuB6b0mzwf5kYoEuxSf+GxNQDC0MEBhU3VZkf7mO9UKm3KoqK9YxOVW+DJEV9WBir\nKdhyj4jzKTEVrjFpqjEV+6eZkFfY5OUhcBd5gNAUu0aeAoMD5Hmn7LtVwlYmHNnv\nrcv9bkr8oOUp07HoWhO12vWetQKBgQC2JcTimRZ+qJwQuvNxnx+7mpNj6IP6+6XL\nng3X0e+CHOo1Pyj+ox0ujMtOmEt4Szsw2ZiY40TPumUBPw/XNz1xtkElaT5Rcqu8\nTnMQmHit5VStVoDcVlgLR1SSHY/eCFDUa+Nrcv84Z7pAG7LBy2j8NCTmQuB6cfhc\nn4gFX8oJ/wKBgAdLx/c1w2GBBVDUBlCcH40gaGACCHu+GtTANjUQy9WGhcjNV9w8\n+GcXCUmhr8rT3GvHXvzaNSrdqdtVKDjau3TTBJm8XA4lKAWevKTHleLUjaeEWyyv\nSirQisqT9Q9It8PaDacuAKo5lNONQiwlEBJCTqeCuQqlFYQgpi3qZrEVAoGBAIKE\n4+T/j6foyBQQ8nq7bDCxHeZcaZ5CDlauhfrdWwNgFs9a19RHK5T8nH5QENw9BEgH\n1BnR2LAFP3U6K+6qjaPa1implVcllTvU9wywROFO0HN45dN9J4/FaCtfdYTDbrAY\nMxj+iTVw1nwznM7TJAJ8luhMibAT1MUCJ6S6M/sfAoGAO5mfodD92OlogTz/5euv\ni7UorbeLANWGZZqna8xos9Y/ONXlAFlYTIkPWygV0yhQGGjbrRkaftzZT/XsaS2b\nI3rAWKLWZSqhFJFSiAV13/Zkw/tMOugkgI1WNdOVXpvo1+VpBvH7qzMQ//dAmL9N\nVvV/HkpxHyq5zdSFN/AyOiE=\n-----END PRIVATE KEY-----\n",
+  "client_email": "dance-school-s-c-bot@danceschoolsc.iam.gserviceaccount.com",
+  "client_id": "110213584194451995088",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/dance-school-s-c-bot%40danceschoolsc.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}
