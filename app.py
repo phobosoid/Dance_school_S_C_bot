@@ -1,50 +1,48 @@
 #!/usr/bin/env python3
-import os
-from flask import Flask, request
+import os, json, asyncio, logging
 import gspread
 from google.oauth2.service_account import Credentials
-from aiogram import Bot, Dispatcher
-from aiogram.types import Update
+from aiogram import Bot, Dispatcher, types, F
+from aiogram.filters import CommandStart
+from aiogram.types import ReplyKeyboardMarkup, KeyboardButton
 
-# — Настройки бота и таблицы —
+logging.basicConfig(level=logging.INFO)
+
 BOT_TOKEN      = "8044257387:AAEfquO4xTqG3xqCZk2OZtwRpa59SH_mCoU"
-SPREADSHEET_ID = "1ErPr1xUMw-qbFIxFS9Rjxs0HEqc-4zzf1myli5i8nO8"
+SPREADSHEET_ID = "1ErPr1xUMw-qbFIxFS9pFIxFS9Rjxs0HEqc-4zzf1myli5i8nO8"
 
-# — Google Sheets API —
-SCOPES = ["https://www.googleapis.com/auth/spreadsheets.readonly"]
-SERVICE_ACCOUNT_FILE = os.path.join(os.path.dirname(__file__), "creds.json")
+# Читаем JSON-ключ из переменной окружения
+creds_info = json.loads(os.environ["GOOGLE_CREDS_JSON"])
+creds      = Credentials.from_service_account_info(creds_info, scopes=["https://www.googleapis.com/auth/spreadsheets.readonly"])
+gc         = gspread.authorize(creds)
 
-creds = Credentials.from_service_account_file(
-    SERVICE_ACCOUNT_FILE,
-    scopes=SCOPES
-)
-gc    = gspread.authorize(creds)
-sheet = gc.open_by_key(SPREADSHEET_ID).sheet1  # первая вкладка
-
-# — Flask + Aiogram —
-app = Flask(__name__)
 bot = Bot(token=BOT_TOKEN)
-dp  = Dispatcher(bot)
+dp  = Dispatcher()
 
-@dp.message_handler(commands=["start"])
-async def cmd_start(msg: Update):
-    await msg.reply("Привет! Отправьте /schedule, чтобы получить данные из Google Sheets.")
+kb_main = ReplyKeyboardMarkup([[KeyboardButton("🗂️ Неделя")]], resize_keyboard=True)
 
-@dp.message_handler(commands=["schedule"])
-async def cmd_schedule(msg: Update):
-    # Читаем диапазон A1:B10
-    data = sheet.get("A1:B10")
-    text = "\n".join(f"{r[0]} — {r[1]}" for r in data if len(r) >= 2)
-    if not text:
-        text = "В таблице нет данных в ячейках A1:B10."
-    await msg.reply(text)
+@dp.message(CommandStart())
+async def on_start(m: types.Message):
+    await m.answer("Выберите «🗂️ Неделя»", reply_markup=kb_main)
 
-@app.route(f"/webhook/{BOT_TOKEN}", methods=["POST"])
-def webhook():
-    upd = Update(**request.get_json(force=True))
-    dp.loop.create_task(dp.process_update(upd))
-    return "OK"
+@dp.message(F.text=="🗂️ Неделя")
+async def week_view(m: types.Message):
+    try:
+        ws = gc.open_by_key(SPREADSHEET_ID).worksheet("Week")
+    except Exception:
+        logging.exception("Ошибка открытия Week")
+        return await m.answer("Не удалось открыть вкладку «Week».")
+    lines = []
+    for cell in ("A1","B1","B3"):
+        v = ws.acell(cell).value
+        if v and v.strip(): lines.append(v.strip())
+    for col in "CDEFGHI":
+        v2,v3 = ws.acell(f"{col}2").value, ws.acell(f"{col}3").value
+        if v2 and v3: lines.append(f"{v2.strip()} {v3.strip()}")
+    await m.answer("\n".join(lines) if lines else "Данных нет.")
 
-if __name__ == "__main__":
-    # Для локального запуска
-    app.run(host="0.0.0.0", port=int(os.environ.get("PORT", 5000)))
+async def main():
+    await dp.start_polling(bot, skip_updates=True)
+
+if __name__=="__main__":
+    asyncio.run(main())
